@@ -25,6 +25,7 @@ function data= ekfslam_sim(lm, wp)
 % Tim Bailey and Juan Nieto 2004.
 % Version 1.0
 
+warning('off', 'Octave:possible-matlab-short-circuit-operator');
 
 format compact
 configfile; % ** USE THIS FILE TO CONFIGURE THE EKF-SLAM **
@@ -97,8 +98,8 @@ while iwp ~= 0
     data= store_data(data, x, P, xtrue);
     
     % plots
-    xt= transformtoglobal(veh,xtrue);
-    xv= transformtoglobal(veh,x(1:3));
+    xt= TransformToGlobal(veh,xtrue);
+    xv= TransformToGlobal(veh,x(1:3));
     set(h.xt, 'xdata', xt(1,:), 'ydata', xt(2,:))
     set(h.xv, 'xdata', xv(1,:), 'ydata', xv(2,:))
     set(h.xf, 'xdata', x(4:2:end), 'ydata', x(5:2:end))
@@ -143,7 +144,7 @@ if isempty(rb), p=[]; return, end
 len= size(rb,2);
 lnes(1,:)= zeros(1,len)+ xv(1);
 lnes(2,:)= zeros(1,len)+ xv(2);
-lnes(3:4,:)= transformtoglobal([rb(1,:).*cos(rb(2,:)); rb(1,:).*sin(rb(2,:))], xv);
+lnes(3:4,:)= TransformToGlobal([rb(1,:).*cos(rb(2,:)); rb(1,:).*sin(rb(2,:))], xv);
 p= line_plot_conversion (lnes);
 
 %
