@@ -1,3 +1,5 @@
+NOTA: forkeado para intentar compatibilidad con Octave
+
 SLAM Simulations
 
 These MatLab simulations are of EKF-SLAM, FastSLAM 1.0, FastSLAM 2.0
